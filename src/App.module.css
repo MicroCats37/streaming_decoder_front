@@ -1,62 +1,279 @@
+/* Complete redesign with modern styling and mobile responsiveness */
+
 .App {
-  text-align: center;
-  background: #121212;
-  color: #f5f5f5;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
+  /* Updated background to use red and gold gradient inspired by the engineering college logo */
+  background: linear-gradient(135deg, #1a0f0f 0%, #2d1b1b 50%, #3d1a1a 100%);
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
 }
 
 .header {
-  width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.topSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  /* Updated border color to gold */
+  border-bottom: 2px solid rgba(212, 175, 55, 0.4);
 }
 
 .logo {
-  height: 60px;
-  margin-bottom: 1rem;
+  height: 50px;
+  width: auto;
+  /* Updated glow effect to gold */
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
 }
 
-h2 {
-  margin: 1rem 0;
-  color: #00bcd4;
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  /* Updated gradient to red and gold colors from the logo */
+  background: linear-gradient(45deg, #dc2626, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Updated text shadow to red */
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
 }
 
-select {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: none;
+.controlSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.selectorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.selectorLabel {
+  font-size: 1.1rem;
+  font-weight: 500;
+  /* Updated label color to light gold */
+  color: #f3e8aa;
+}
+
+.channelSelector {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  /* Updated border to gold */
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  /* Updated background to dark red tone */
+  background: rgba(45, 27, 27, 0.8);
+  color: #ffffff;
   font-size: 1rem;
-  background-color: #1f1f1f;
-  color: #f5f5f5;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 200px;
 }
 
-select:hover {
-  background-color: #333;
+.channelSelector:hover {
+  /* Updated hover border to bright gold */
+  border-color: #d4af37;
+  /* Updated hover background */
+  background: rgba(45, 27, 27, 0.9);
+  /* Updated hover shadow to gold */
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-select option {
-  background: #1f1f1f;
-  color: #f5f5f5;
+.channelSelector:focus {
+  outline: none;
+  /* Updated focus border to red */
+  border-color: #dc2626;
+  /* Updated focus shadow to red */
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
 }
 
-.video-container {
-  margin-top: 1rem;
+.channelSelector option {
+  /* Updated option background to dark */
+  background: #2d1b1b;
+  color: #ffffff;
+  padding: 0.5rem;
+}
+
+.currentChannelInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  /* Updated background to red with transparency */
+  background: rgba(220, 38, 38, 0.15);
+  border-radius: 12px;
+  /* Updated border to red */
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.nowWatching {
+  font-size: 0.9rem;
+  /* Updated text color to light gold */
+  color: #f3e8aa;
+  font-weight: 400;
+}
+
+.channelName {
+  font-size: 1.3rem;
+  font-weight: 600;
+  /* Updated channel name color to bright red */
+  color: #dc2626;
+  /* Updated text shadow to red */
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
+}
+
+.videoContainer {
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  /* Updated shadow to include red and gold tones */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(220, 38, 38, 0.2);
+  /* Updated border to gold */
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  background: #000;
+  position: relative;
 }
 
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.videoContainer::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  /* Updated gradient to red and gold colors */
+  background: linear-gradient(45deg, #dc2626, #d4af37, #dc2626);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .App {
+    padding: 0.5rem;
+  }
+
+  .header {
+    gap: 1.5rem;
+  }
+
+  .topSection {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .controlSection {
+    gap: 1rem;
+  }
+
+  .selectorContainer {
+    width: 100%;
+  }
+
+  .channelSelector {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem 1rem;
+  }
+
+  .currentChannelInfo {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .videoContainer {
+    margin: 0;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .channelSelector {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .channelName {
+    font-size: 1.1rem;
+  }
+
+  .videoContainer {
+    border-radius: 8px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .topSection {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .controlSection {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .selectorContainer {
+    flex: 1;
+  }
+
+  .currentChannelInfo {
+    flex: 1;
+    max-width: none;
+  }
+}
+
+/* Dark theme enhancements */
+@media (prefers-color-scheme: dark) {
+  .channelSelector {
+    /* Updated dark theme background */
+    background: rgba(45, 27, 27, 0.9);
+  }
+
+  .channelSelector option {
+    /* Updated dark theme option background */
+    background: #2d1b1b;
+  }
 }

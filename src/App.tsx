@@ -1,8 +1,10 @@
-import type { Component } from 'solid-js';
-import { createSignal } from 'solid-js';
-import logo from './logo.svg';
-import styles from './App.module.css';
-import HlsPlayer from './components/HlsPlayer';
+"use client"
+
+import type { Component } from "solid-js"
+import { createSignal } from "solid-js"
+import logo from "./logo.png"
+import styles from "./App.module.css"
+import HlsPlayer from "./components/HlsPlayer"
 
 const channels = [
   { id: 1, name: "Canal 1", url: "http://10.10.5.57:7000/live/1/playlist.m3u8" },
@@ -17,36 +19,51 @@ const channels = [
   { id: 10, name: "Canal 10", url: "http://10.10.5.57:7000/live/10/playlist.m3u8" },
   { id: 11, name: "Canal 11", url: "http://10.10.5.57:7000/live/11/playlist.m3u8" },
   { id: 12, name: "Canal 12", url: "http://10.10.5.57:7000/live/12/playlist.m3u8" },
-  { id: 13, name: "Canal 13", url: "http://10.10.5.57:7000/live/13/playlist.m3u8" }
-];
+  { id: 13, name: "Canal 13", url: "http://10.10.5.57:7000/live/13/playlist.m3u8" },
+]
 
 const App: Component = () => {
-  const [currentChannel, setCurrentChannel] = createSignal(channels[0]);
+  const [currentChannel, setCurrentChannel] = createSignal(channels[0])
 
   return (
     <div class={styles.App}>
       <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        
-        <h2>Selector de Canal</h2>
-        <select
-          onInput={(e) => {
-            const id = Number(e.currentTarget.value);
-            const channel = channels.find(c => c.id === id);
-            if (channel) setCurrentChannel(channel);
-          }}
-        >
-          {channels.map(c => (
-            <option value={c.id}>{c.name}</option>
-          ))}
-        </select>
+        <div class={styles.topSection}>
+          <img src={logo || "/placeholder.svg"} class={styles.logo} alt="logo" />
+          <h1 class={styles.title}>CIPLima TV</h1>
+        </div>
 
-        <div style={{ "margin-top": "1rem", width: "80%" }}>
+        <div class={styles.controlSection}>
+          <div class={styles.selectorContainer}>
+            <label class={styles.selectorLabel}>Seleccionar Canal:</label>
+            <select
+              class={styles.channelSelector}
+              onInput={(e) => {
+                const id = Number(e.currentTarget.value)
+                const channel = channels.find((c) => c.id === id)
+                if (channel) setCurrentChannel(channel)
+              }}
+            >
+              {channels.map((c) => (
+                <option value={c.id}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div class={styles.currentChannelInfo}>
+            <span class={styles.nowWatching}>Viendo:</span>
+            <span class={styles.channelName}>{currentChannel().name}</span>
+          </div>
+        </div>
+
+        <div class={styles.videoContainer}>
           <HlsPlayer src={currentChannel().url} autoplay={false} />
         </div>
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
